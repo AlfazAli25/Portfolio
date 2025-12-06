@@ -57,26 +57,29 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          access_key: "770762aa-db92-4988-82b2-c91d28473ae2", // Replace with your actual access key
+          ...data,
+        }),
       });
 
       const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to send message');
+      if (!result.success) {
+        throw new Error(result.message || "Failed to send message");
       }
 
       setIsSuccess(true);
 
       toast({
         title: "Message sent!",
-        description: result.message || "Thank you for reaching out. I'll get back to you soon.",
+        description: "Thank you for reaching out. I'll get back to you soon.",
       });
 
       // Reset form after success animation
@@ -88,7 +91,10 @@ const Contact = () => {
       console.error("Form submission error:", error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
