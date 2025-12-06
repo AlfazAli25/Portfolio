@@ -136,7 +136,7 @@ const Navbar = ({ isDark, onThemeToggle }: NavbarProps) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute left-0 right-0 top-16 border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
+            className="absolute left-0 right-0 top-16 z-50 border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
