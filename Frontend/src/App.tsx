@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BackendProject from "./pages/BackendProject";
 import NotFound from "./pages/NotFound";
+import Background from "./components/Background";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Background />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/backend-project" element={<BackendProject />} />
