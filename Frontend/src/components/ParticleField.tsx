@@ -5,9 +5,9 @@ import * as THREE from "three";
 
 function ParticleSystem() {
   const ref = useRef<THREE.Points>(null);
-  
+
   const particleCount = 2000;
-  
+
   const positions = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -25,7 +25,7 @@ function ParticleSystem() {
     if (ref.current) {
       ref.current.rotation.x = state.clock.elapsedTime * 0.02;
       ref.current.rotation.y = state.clock.elapsedTime * 0.03;
-      
+
       // Gentle floating motion
       ref.current.position.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.3;
     }
@@ -86,9 +86,9 @@ const ParticleField = () => {
         <ParticleSystem />
         <FloatingGeometry />
       </Canvas>
-      
-      {/* Gradient overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+
+      {/* Gradient overlay - Removed to allow galaxy background to shine through */}
+      {/* <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" /> */}
     </div>
   );
 };

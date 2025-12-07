@@ -123,14 +123,19 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-transparent text-foreground font-body antialiased;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-glass-border rounded-xl;
-    box-shadow: var(--shadow-card);
+    @apply bg-card/60 backdrop-blur-md border border-white/10 rounded-xl transition-all duration-300;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glass-card:hover {
+    @apply bg-card/70 border-primary/50;
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2);
   }
 
   .neon-text {
