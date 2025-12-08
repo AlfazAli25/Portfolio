@@ -19,17 +19,17 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Luxe Market",
+    title: "Luxe",
     category: "Full Stack E-commerce",
     description: "A premium e-commerce platform built for high-end retail with real-time inventory management.",
     role: "Lead Full Stack Developer",
     problemSolved: "Solved the issue of high-traffic concurrency during flash sales by implementing Redis caching and optimistic locking, reducing server load by 40%.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe"],
+    tech: ["MERN", "JavaScript", "Tailwind CSS", "Framer Motion", "MongoDB"],
     features: [
-      "Real-time inventory tracking with WebSocket updates",
-      "Secure payment processing via Stripe integration",
+      "Developed a full-featured online clothing marketplace featuring immersive 3D product visuals via Three.js.",
+      "Dummy Secure payment processing via Stripe integration",
       "Admin dashboard for order and product management",
-      "Optimized image loading with lazy loading and blur placeholders",
+      "Created backend APIs with Express and NodeJS, integrating MongoDB for dynamic product listings and user features.",
       "Responsive design with mobile-first approach"
     ],
     images: [
@@ -43,18 +43,17 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Connect & Share",
+    title: "AuraLink",
     category: "Social Media Platform",
-    description: "A modern social networking app featuring real-time messaging, stories, and interactive posts.",
-    role: "Frontend Architect",
-    problemSolved: "Enhanced user engagement by 60% through the implementation of an infinite scroll feed and optimistic UI updates for instant interaction feedback.",
-    tech: ["React", "Node.js", "Socket.io", "MongoDB", "Express", "AWS S3"],
+    description: "A Backend-driven social media platform enabling secure user registration, login, and personalized profile management.",
+    role: "Backend Architect",
+    problemSolved: "Secure user registration, login, and personalized profile management using JWT Auth and bcrypt.",
+    tech: ["Node.js", "MongoDB", "Express", "Tailwind CSS", "EJS"],
     features: [
-      "Real-time chat messaging with Socket.io",
-      "Story feature with 24-hour expiration",
+      "Secure user registration, login, and personalized profile management",
       "Interactive posts (Like, Comment, Share)",
       "User authentication and profile management",
-      "Image upload and optimization using AWS S3"
+      "Image upload"
     ],
     images: [
       "/projects/social-media/social-1.png",

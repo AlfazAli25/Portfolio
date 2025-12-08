@@ -13,7 +13,7 @@ const skillCategories = [
   },
   {
     title: "Tools & DevOps",
-    skills: ["Git", "GitHub", "Docker", "AWS", "Postman", "VS Code", "Vercel"]
+    skills: ["Git", "GitHub", "Postman", "VS Code", "GitHub Copilot", "Vercel","Netlify"]
   },
   {
     title: "Computer Science",
