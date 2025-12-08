@@ -1,6 +1,8 @@
+```typescript
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -61,7 +63,7 @@ const projects: Project[] = [
       "/projects/social-media/social-3.png"
     ],
     github: "https://github.com/AlfazAli25/Basic_Social_Media_WebApplication",
-    demo: "https://connect-share.vercel.app",
+    demo: "/backend-project",
   },
 ];
 
@@ -84,7 +86,7 @@ const Projects = () => {
 
     // Use requestAnimationFrame for smooth performance
     requestAnimationFrame(() => {
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.transform = `perspective(1000px) rotateX(${ rotateX }deg) rotateY(${ rotateY }deg) scale3d(1.02, 1.02, 1.02)`;
     });
   };
 
@@ -179,15 +181,25 @@ const Projects = () => {
                     >
                       <Github className="h-4 w-4" />
                     </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary hover:text-white"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
+                    {project.demo.startsWith("/") ? (
+                       <Link
+                        to={project.demo}
+                        className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary hover:text-white"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </Link>
+                    ) : (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary hover:text-white"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -251,7 +263,7 @@ const Projects = () => {
               <div className="relative h-64 w-full bg-black/50 sm:h-80 md:h-96">
                 <img
                   src={selectedProject.images[activeImageIndex]}
-                  alt={`${selectedProject.title} screenshot ${activeImageIndex + 1}`}
+                  alt={`${ selectedProject.title } screenshot ${ activeImageIndex + 1 } `}
                   className="h-full w-full object-contain"
                 />
 
@@ -279,8 +291,9 @@ const Projects = () => {
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`h-2 w-2 rounded-full transition-all ${idx === activeImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"
-                        }`}
+                      className={`h - 2 w - 2 rounded - full transition - all ${
+  idx === activeImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"
+} `}
                     />
                   ))}
                 </div>
@@ -303,14 +316,24 @@ const Projects = () => {
                     >
                       <Github className="h-4 w-4" /> Code
                     </a>
-                    <a
-                      href={selectedProject.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-neon flex items-center gap-2 px-6 py-2 text-sm"
-                    >
-                      <ExternalLink className="h-4 w-4" /> Live Demo
-                    </a>
+                    {selectedProject.demo.startsWith("/") ? (
+                       <Link
+                        to={selectedProject.demo}
+                        className="btn-neon flex items-center gap-2 px-6 py-2 text-sm"
+                        onClick={() => setSelectedProject(null)}
+                      >
+                        <ExternalLink className="h-4 w-4" /> Live Demo
+                      </Link>
+                    ) : (
+                      <a
+                        href={selectedProject.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-neon flex items-center gap-2 px-6 py-2 text-sm"
+                      >
+                        <ExternalLink className="h-4 w-4" /> Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
 
