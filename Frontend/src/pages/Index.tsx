@@ -9,7 +9,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Services from "@/components/Services";
-import Testimonials from "@/components/Testimonials";
+
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,7 +63,7 @@ const Index = () => {
           <Services />
           <Skills />
           <Projects />
-          <Testimonials />
+
           <Contact />
         </main>
 
