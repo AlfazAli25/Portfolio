@@ -38,8 +38,8 @@ const projects: Project[] = [
       "/projects/luxe/luxe-3.png",
       "/projects/luxe/luxe-4.png"
     ],
-    github: "https://github.com/AlfazAli25",
-    demo: "https://luxe-market.vercel.app",
+    github: "https://github.com/AlfazAli25/luxe-fashion-marketplace",
+    demo: "https://luxe-fashion-marketplace.vercel.app/",
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ const projects: Project[] = [
       "/projects/social-media/social-2.png",
       "/projects/social-media/social-3.png"
     ],
-    github: "https://github.com/AlfazAli25",
+    github: "https://github.com/AlfazAli25/Basic_Social_Media_WebApplication",
     demo: "https://connect-share.vercel.app",
   },
 ];
