@@ -119,7 +119,7 @@ const Navbar = ({ isDark, onThemeToggle }: NavbarProps) => {
           ))}
           <ThemeToggle isDark={isDark} onToggle={onThemeToggle} />
           <motion.a
-            href="/resume.pdf"
+            href="/Resume_Alfaz_FullStack.pdf"
             download="Alfaz_Ali_Resume.pdf"
             className="ml-4 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 font-display text-xs font-semibold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground"
             whileHover={{ scale: 1.05 }}
