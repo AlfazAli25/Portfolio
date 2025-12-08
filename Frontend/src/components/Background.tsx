@@ -6,6 +6,7 @@ const Background = () => {
   const [glowingStars, setGlowingStars] = useState("");
 
   useEffect(() => {
+    // Reduced star count for better performance
     const generateStars = (count: number) => {
       let shadow = "";
       for (let i = 0; i < count; i++) {
@@ -22,8 +23,8 @@ const Background = () => {
       return shadow.slice(0, -2);
     };
 
-    setStars(generateStars(200));
-    setGlowingStars(generateGlowingStars(50));
+    setStars(generateStars(100)); // Reduced from 200
+    setGlowingStars(generateGlowingStars(30)); // Reduced from 50
   }, []);
 
   return (
@@ -54,20 +55,16 @@ const Background = () => {
       <motion.div
         animate={{
           rotate: [0, 360],
-          scale: [1, 1.1, 1],
         }}
         transition={{
-          rotate: { duration: 120, repeat: Infinity, ease: "linear" },
-          scale: { duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" }
+          rotate: { duration: 150, repeat: Infinity, ease: "linear" }, // Increased duration for smoother, less intensive anim
         }}
-        className="absolute -inset-[50%] opacity-40 blur-[100px]"
+        className="absolute -inset-[50%] opacity-30 blur-[80px] will-change-transform" // Reduced opacity and blur, added will-change
         style={{
           background: `
             radial-gradient(circle at 50% 50%, hsl(var(--background)) 0%, transparent 50%),
-            radial-gradient(circle at 0% 0%, hsla(var(--neon-purple) / 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 100% 0%, hsla(var(--neon-cyan) / 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 100% 100%, hsla(var(--neon-pink) / 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 0% 100%, hsla(var(--neon-purple) / 0.5) 0%, transparent 50%)
+            radial-gradient(circle at 0% 0%, hsla(var(--neon-purple) / 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, hsla(var(--neon-pink) / 0.4) 0%, transparent 50%)
           `
         }}
       />
@@ -76,17 +73,15 @@ const Background = () => {
       <motion.div
         animate={{
           rotate: [360, 0],
-          scale: [1.2, 1, 1.2],
         }}
         transition={{
-          rotate: { duration: 180, repeat: Infinity, ease: "linear" },
-          scale: { duration: 25, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" }
+          rotate: { duration: 200, repeat: Infinity, ease: "linear" },
         }}
-        className="absolute -inset-[20%] opacity-30 blur-[80px]"
+        className="absolute -inset-[20%] opacity-20 blur-[60px] will-change-transform" // Reduced opacity and blur
         style={{
           background: `
-            radial-gradient(circle at 20% 50%, hsla(var(--neon-cyan) / 0.4) 0%, transparent 40%),
-            radial-gradient(circle at 80% 50%, hsla(var(--neon-pink) / 0.4) 0%, transparent 40%)
+            radial-gradient(circle at 20% 50%, hsla(var(--neon-cyan) / 0.3) 0%, transparent 40%),
+            radial-gradient(circle at 80% 50%, hsla(var(--neon-pink) / 0.3) 0%, transparent 40%)
           `
         }}
       />

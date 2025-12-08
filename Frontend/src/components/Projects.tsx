@@ -73,21 +73,29 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // 3D Tilt Effect Helpers
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, id: number) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
-    const rotateY = ((x - centerX) / centerX) * 10;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    // Reduced rotation intensity for better performance
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
+
+    // Use requestAnimationFrame for smooth performance
+    requestAnimationFrame(() => {
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    const card = e.currentTarget;
+    requestAnimationFrame(() => {
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    });
   };
 
   return (
@@ -132,7 +140,7 @@ const Projects = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group glass-card cursor-pointer overflow-hidden transition-all duration-200 ease-out"
                 onClick={() => setSelectedProject(project)}
-                onMouseMove={(e) => handleMouseMove(e, project.id)}
+                onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{
                   transformStyle: "preserve-3d",
