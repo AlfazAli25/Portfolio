@@ -147,11 +147,10 @@ const About = () => {
             <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary via-secondary to-transparent" />
 
             {[
-              { year: "2021", title: "Started Coding", description: "Wrote my first line of C++ code and fell in love with problem solving." },
-              { year: "2022", title: "Learned MERN Stack", description: "Deep dived into web development with React, Node.js, and MongoDB." },
-              { year: "2023", title: "Built Major Projects", description: "Created full-stack applications like E-commerce and Social Media platforms." },
-              { year: "2024", title: "Internship & Freelance", description: "Gained real-world experience working on client projects and internships." },
-              { year: "2025", title: "Advancing Skills", description: "Exploring Cloud Computing, DevOps, and Scalable Architecture." }
+              { year: "2022", title: "Started Coding", description: "Wrote my first line of C++ code and fell in love with problem solving." },
+              { year: "2023-24", title: "Learned MERN Stack", description: "Deep dived into web development with React, Next.js, Node.js, and MongoDB." },
+              { year: "2025", title: "Built Major Projects", description: "Created full-stack applications like E-commerce and Social Media platforms." },
+              { year: "2025", title: "Advancing Skills", description: "Exploring Cloud Computing, DevOps, and Scalable Architecture."}
             ].map((item, index) => (
               <motion.div
                 key={item.year}

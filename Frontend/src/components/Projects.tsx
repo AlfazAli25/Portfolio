@@ -169,7 +169,7 @@ const Projects = () => {
                     {project.title}
                   </h3>
                   <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground font-mono">
-                    <span className="text-primary">Rule:</span> {project.role}
+                    <span className="text-primary">Role:</span> {project.role}
                   </div>
                   <p className="mb-4 font-body text-sm text-muted-foreground line-clamp-2">
                     {project.description}

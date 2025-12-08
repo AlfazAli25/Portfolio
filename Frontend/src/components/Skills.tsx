@@ -165,7 +165,7 @@ const Skills = () => {
                 </div>
               </div>
               <div className="glass-card p-6 text-center hover:border-neon-pink/50 transition-colors sm:col-span-2">
-                <div className="mb-2 font-display text-4xl font-bold text-[#ff0080]">2+</div>
+                <div className="mb-2 font-display text-4xl font-bold text-[#ff0080]">3+</div>
                 <div className="font-body text-sm text-muted-foreground">
                   Years of Coding Experience
                 </div>
