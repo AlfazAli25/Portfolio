@@ -5,7 +5,7 @@ const socialLinks = [
   { icon: Github, href: "https://github.com/AlfazAli25", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/alfaz-ali-5a0562289/", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/_alfazali_/", label: "Instagram" },
-  { icon: Mail, href: "mailto:alfazali2002@gmail.com", label: "Email" },
+  { icon: Mail, href: "mailto:alfazali499@gmail.com", label: "Email" },
 ];
 
 const Footer = () => {

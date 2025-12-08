@@ -51,7 +51,7 @@ const About = () => {
             Turning <span className="gradient-text">Ideas</span> Into Reality
           </h2>
           <p className="section-subtitle mx-auto">
-            I'm a passionate developer with 5+ years of experience creating digital experiences
+            I'm a passionate MERN Stack Developer with 3+ years of experience creating digital experiences
             that make a difference.
           </p>
         </motion.div>
