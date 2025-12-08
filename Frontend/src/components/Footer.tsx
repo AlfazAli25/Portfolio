@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Heart } from "lucide-react";
+import { Github, Linkedin, Instagram, Heart, Mail, MapPin } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/AlfazAli25", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/alfaz-ali-5a0562289/", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/_alfazali_/", label: "Instagram" },
+  { icon: Mail, href: "mailto:alfazali2002@gmail.com", label: "Email" },
 ];
 
 const Footer = () => {
@@ -23,6 +24,10 @@ const Footer = () => {
             <p className="mt-2 font-body text-sm text-muted-foreground">
               Building the future, one pixel at a time.
             </p>
+            <div className="mt-2 flex items-center justify-center gap-2 text-sm text-muted-foreground md:justify-start">
+              <MapPin className="h-4 w-4 text-primary" />
+              <span>Kolkata, India</span>
+            </div>
           </div>
 
           {/* Social links */}

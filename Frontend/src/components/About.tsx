@@ -130,6 +130,53 @@ const About = () => {
             ))}
           </div>
         </div>
+        {/* Timeline Section */}
+        <div className="mt-24">
+          <motion.h3
+            className="mb-12 text-center font-display text-2xl font-bold text-foreground"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            My Journey
+          </motion.h3>
+
+          <div className="relative mx-auto max-w-3xl">
+            {/* Vertical line */}
+            <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary via-secondary to-transparent" />
+
+            {[
+              { year: "2021", title: "Started Coding", description: "Wrote my first line of C++ code and fell in love with problem solving." },
+              { year: "2022", title: "Learned MERN Stack", description: "Deep dived into web development with React, Node.js, and MongoDB." },
+              { year: "2023", title: "Built Major Projects", description: "Created full-stack applications like E-commerce and Social Media platforms." },
+              { year: "2024", title: "Internship & Freelance", description: "Gained real-world experience working on client projects and internships." },
+              { year: "2025", title: "Advancing Skills", description: "Exploring Cloud Computing, DevOps, and Scalable Architecture." }
+            ].map((item, index) => (
+              <motion.div
+                key={item.year}
+                className={`mb-12 flex items-center justify-between ${index % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                  }`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-5/12" />
+                <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-4 border-background bg-gradient-to-br from-primary to-secondary shadow-lg shadow-primary/20">
+                  <div className="h-2 w-2 rounded-full bg-white" />
+                </div>
+                <div className={`w-5/12 ${index % 2 === 0 ? "text-right" : "text-left"}`}>
+                  <div className="glass-card p-4 transition-transform hover:-translate-y-1 hover:border-primary/30">
+                    <span className="font-display text-2xl font-bold text-primary">{item.year}</span>
+                    <h4 className="mb-1 font-display text-lg font-semibold text-foreground">{item.title}</h4>
+                    <p className="font-body text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

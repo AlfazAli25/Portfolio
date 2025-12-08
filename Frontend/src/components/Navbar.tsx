@@ -118,6 +118,15 @@ const Navbar = ({ isDark, onThemeToggle }: NavbarProps) => {
             </motion.a>
           ))}
           <ThemeToggle isDark={isDark} onToggle={onThemeToggle} />
+          <motion.a
+            href="/resume.pdf"
+            download="Alfaz_Ali_Resume.pdf"
+            className="ml-4 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 font-display text-xs font-semibold uppercase tracking-wider text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Resume
+          </motion.a>
         </div>
 
         {/* Mobile Menu Button */}

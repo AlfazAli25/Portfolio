@@ -8,6 +8,8 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +19,7 @@ const Index = () => {
     // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
+
     if (savedTheme === "light" || (!savedTheme && !prefersDark)) {
       setIsDark(false);
       document.documentElement.classList.add("light");
@@ -54,12 +56,14 @@ const Index = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <Navbar isDark={isDark} onThemeToggle={toggleTheme} />
-        
+
         <main className="overflow-hidden">
           <Hero />
           <About />
+          <Services />
           <Skills />
           <Projects />
+          <Testimonials />
           <Contact />
         </main>
 
