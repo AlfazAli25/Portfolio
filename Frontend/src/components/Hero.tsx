@@ -20,7 +20,7 @@ const Hero = () => {
 
       {/* Hero Glow Effect */}
       <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[100px] filter" />
-      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-transparent via-background/20 to-background" />
+      <div className="absolute left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-transparent via-background/20 to-transparent" />
 
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4">

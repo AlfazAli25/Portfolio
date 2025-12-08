@@ -65,16 +65,16 @@
 
   .light {
     /* Dim/Grey Theme - "A little dark" */
-    --background: 220 15% 90%;
-    --foreground: 220 20% 5%;
+    --background: 220 20% 97%;
+    --foreground: 220 20% 10%;
     /* darker text for visibility */
 
-    --card: 220 15% 95%;
+    --card: 0 0% 100%;
     /* cards pop out slightly lighter */
-    --card-foreground: 220 20% 5%;
+    --card-foreground: 220 20% 10%;
 
-    --popover: 220 15% 95%;
-    --popover-foreground: 220 20% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
 
     --primary: 185 90% 30%;
     /* slightly darker primary for contrast */
@@ -83,7 +83,7 @@
     --secondary: 270 70% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 15% 80%;
+    --muted: 220 15% 90%;
     --muted-foreground: 220 15% 40%;
 
     --accent: 185 90% 30%;
@@ -92,8 +92,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 80%;
-    --input: 220 15% 80%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
     --ring: 185 90% 30%;
 
     --neon-cyan: 185 90% 30%;
@@ -103,7 +103,7 @@
     --glass-border: 220 15% 80%;
 
     --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)));
-    --gradient-card: linear-gradient(145deg, hsl(220 15% 95%), hsl(220 15% 90%));
+    --gradient-card: linear-gradient(145deg, #ffffff, #f8f9fa);
     --gradient-glow: radial-gradient(circle, hsl(var(--neon-cyan) / 0.1) 0%, transparent 70%);
 
     --shadow-neon: 0 0 20px hsl(var(--neon-cyan) / 0.15), 0 0 40px hsl(var(--neon-cyan) / 0.05);
@@ -132,7 +132,7 @@
     @apply bg-card/60 backdrop-blur-md border border-white/10 rounded-xl transition-all duration-300;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
-  
+
   .glass-card:hover {
     @apply bg-card/70 border-primary/50;
     box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.2);
@@ -251,6 +251,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
