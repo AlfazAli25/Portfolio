@@ -1,4 +1,3 @@
-```typescript
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -86,7 +85,7 @@ const Projects = () => {
 
     // Use requestAnimationFrame for smooth performance
     requestAnimationFrame(() => {
-      card.style.transform = `perspective(1000px) rotateX(${ rotateX }deg) rotateY(${ rotateY }deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
   };
 
@@ -182,7 +181,7 @@ const Projects = () => {
                       <Github className="h-4 w-4" />
                     </a>
                     {project.demo.startsWith("/") ? (
-                       <Link
+                      <Link
                         to={project.demo}
                         className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary hover:text-white"
                         onClick={(e) => e.stopPropagation()}
@@ -263,7 +262,7 @@ const Projects = () => {
               <div className="relative h-64 w-full bg-black/50 sm:h-80 md:h-96">
                 <img
                   src={selectedProject.images[activeImageIndex]}
-                  alt={`${ selectedProject.title } screenshot ${ activeImageIndex + 1 } `}
+                  alt={`${selectedProject.title} screenshot ${activeImageIndex + 1}`}
                   className="h-full w-full object-contain"
                 />
 
@@ -291,9 +290,8 @@ const Projects = () => {
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`h - 2 w - 2 rounded - full transition - all ${
-  idx === activeImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"
-} `}
+                      className={`h-2 w-2 rounded-full transition-all ${idx === activeImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"
+                        }`}
                     />
                   ))}
                 </div>
@@ -317,7 +315,7 @@ const Projects = () => {
                       <Github className="h-4 w-4" /> Code
                     </a>
                     {selectedProject.demo.startsWith("/") ? (
-                       <Link
+                      <Link
                         to={selectedProject.demo}
                         className="btn-neon flex items-center gap-2 px-6 py-2 text-sm"
                         onClick={() => setSelectedProject(null)}
