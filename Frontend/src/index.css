@@ -61,6 +61,8 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 5% 17%;
     --sidebar-ring: 185 100% 50%;
+
+    --star-color: #ffffff;
   }
 
   .light {
@@ -110,6 +112,8 @@
     --shadow-card: 0 4px 12px hsl(220 20% 5% / 0.08);
     /* slightly stronger shadow */
     --shadow-glow-lg: 0 0 60px hsl(var(--neon-cyan) / 0.15);
+
+    --star-color: #000000;
   }
 }
 

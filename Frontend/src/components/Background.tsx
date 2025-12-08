@@ -9,7 +9,7 @@ const Background = () => {
     const generateStars = (count: number) => {
       let shadow = "";
       for (let i = 0; i < count; i++) {
-        shadow += `${Math.random() * 100}vw ${Math.random() * 100}vh ${Math.random() > 0.5 ? '#fff' : '#ffffff80'}, `;
+        shadow += `${Math.random() * 100}vw ${Math.random() * 100}vh var(--star-color), `;
       }
       return shadow.slice(0, -2);
     };
@@ -17,7 +17,7 @@ const Background = () => {
     const generateGlowingStars = (count: number) => {
       let shadow = "";
       for (let i = 0; i < count; i++) {
-        shadow += `${Math.random() * 100}vw ${Math.random() * 100}vh 2px #fff, `;
+        shadow += `${Math.random() * 100}vw ${Math.random() * 100}vh 2px var(--star-color), `;
       }
       return shadow.slice(0, -2);
     };
@@ -27,7 +27,7 @@ const Background = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden bg-[#030014] text-white pointer-events-none">
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-background text-foreground pointer-events-none transition-colors duration-300">
       {/* Stars Layer */}
       <div
         className="absolute inset-0"
@@ -63,7 +63,7 @@ const Background = () => {
         className="absolute -inset-[50%] opacity-40 blur-[100px]"
         style={{
           background: `
-            radial-gradient(circle at 50% 50%, #030014 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, hsl(var(--background)) 0%, transparent 50%),
             radial-gradient(circle at 0% 0%, hsla(var(--neon-purple) / 0.5) 0%, transparent 50%),
             radial-gradient(circle at 100% 0%, hsla(var(--neon-cyan) / 0.5) 0%, transparent 50%),
             radial-gradient(circle at 100% 100%, hsla(var(--neon-pink) / 0.5) 0%, transparent 50%),
@@ -92,7 +92,7 @@ const Background = () => {
       />
 
       {/* Subtle overlay to blend it all */}
-      <div className="absolute inset-0 bg-[#030014]/20 mix-blend-overlay" />
+      <div className="absolute inset-0 bg-background/20 mix-blend-overlay" />
     </div>
   );
 };
