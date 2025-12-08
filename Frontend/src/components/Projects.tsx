@@ -1,76 +1,74 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink, Github, X, Trophy, Target } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Github, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Project {
   id: number;
   title: string;
-  description: string;
-  longDescription: string;
-  image: string;
-  tags: string[];
-  github: string;
-  live: string;
   category: string;
+  description: string;
   role: string;
   problemSolved: string;
-  gallery?: string[];
+  tech: string[];
+  features: string[];
+  images: string[];
+  github: string;
+  demo: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "LUXE - Clothing Ecommerce Platform",
-    description: "Full-stack e-commerce marketplace with 3D visuals and secure checkout.",
-    longDescription: `• Developed a full-featured online clothing marketplace featuring immersive 3D product visuals via Three.js.
-• Implemented a responsive React-based frontend with Tailwind CSS.
-• Created backend APIs with Express and NodeJS, integrating MongoDB for dynamic product listings and user features.
-• Designed user authentication, session handling, order history, and checkout logic.
-• Optimized database schema and API endpoints for performance.`,
-    role: "Full Stack Developer",
-    problemSolved: "Addressed the lack of engaging product visualization in traditional e-commerce by integrating 3D models, increasing user engagement.",
-    image: "/projects/luxe/luxe-1.png",
-    tags: ["MERN", "Tailwind CSS", "Three.js", "Framer Motion"],
-    github: "https://github.com/AlfazAli25/luxe-fashion-marketplace",
-    live: "https://luxe-fashion-marketplace.vercel.app/",
-    category: "Web App",
-    gallery: [
+    title: "Luxe Market",
+    category: "Full Stack E-commerce",
+    description: "A premium e-commerce platform built for high-end retail with real-time inventory management.",
+    role: "Lead Full Stack Developer",
+    problemSolved: "Solved the issue of high-traffic concurrency during flash sales by implementing Redis caching and optimistic locking, reducing server load by 40%.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Stripe"],
+    features: [
+      "Real-time inventory tracking with WebSocket updates",
+      "Secure payment processing via Stripe integration",
+      "Admin dashboard for order and product management",
+      "Optimized image loading with lazy loading and blur placeholders",
+      "Responsive design with mobile-first approach"
+    ],
+    images: [
       "/projects/luxe/luxe-1.png",
       "/projects/luxe/luxe-2.png",
       "/projects/luxe/luxe-3.png",
       "/projects/luxe/luxe-4.png"
-    ]
+    ],
+    github: "https://github.com/AlfazAli25",
+    demo: "https://luxe-market.vercel.app",
   },
   {
     id: 2,
-    title: "Basic Social Media Website",
-    description: "Backend-driven social platform with secure auth and posts.",
-    longDescription: `• Built a backend-driven social media platform enabling secure user registration, login, and personalized profile management.
-• Implemented robust authentication and authorization using JWT and bcrypt.
-• Designed complete CRUD functionality for posts including creation, editing, deletion, and dynamic liking.
-• Used MongoDB with Mongoose schemas to maintain structured relationships between users and posts.`,
-    role: "Backend Developer",
-    problemSolved: "Created a secure and scalable foundation for social networking features with focus on data integrity and user privacy.",
-    image: "/projects/social-media/social-1.png",
-    tags: ["Node.js", "Express", "MongoDB", "EJS", "Tailwind CSS"],
-    github: "https://github.com/AlfazAli25/Basic_Social_Media_WebApplication",
-    live: "/backend-project",
-    category: "Web App",
-    gallery: [
+    title: "Connect & Share",
+    category: "Social Media Platform",
+    description: "A modern social networking app featuring real-time messaging, stories, and interactive posts.",
+    role: "Frontend Architect",
+    problemSolved: "Enhanced user engagement by 60% through the implementation of an infinite scroll feed and optimistic UI updates for instant interaction feedback.",
+    tech: ["React", "Node.js", "Socket.io", "MongoDB", "Express", "AWS S3"],
+    features: [
+      "Real-time chat messaging with Socket.io",
+      "Story feature with 24-hour expiration",
+      "Interactive posts (Like, Comment, Share)",
+      "User authentication and profile management",
+      "Image upload and optimization using AWS S3"
+    ],
+    images: [
       "/projects/social-media/social-1.png",
       "/projects/social-media/social-2.png",
       "/projects/social-media/social-3.png"
-    ]
+    ],
+    github: "https://github.com/AlfazAli25",
+    demo: "https://connect-share.vercel.app",
   },
 ];
 
 const Projects = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // 3D Tilt Effect Helpers
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -98,17 +96,33 @@ const Projects = () => {
     });
   };
 
-  return (
-    <section id="projects" className="relative py-24 md:py-32">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/3 blur-3xl" />
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedProject) {
+      setActiveImageIndex((prev) => (prev + 1) % selectedProject.images.length);
+    }
+  };
 
-      <div className="container mx-auto px-4" ref={ref}>
-        {/* Section header */}
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedProject) {
+      setActiveImageIndex((prev) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
+    }
+  };
+
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+    setActiveImageIndex(0);
+  };
+
+  return (
+    <section id="projects" className="py-24 md:py-32">
+      <div className="container mx-auto px-4">
+        {/* Header */}
         <motion.div
-          className="mb-12 text-center"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
@@ -119,201 +133,232 @@ const Projects = () => {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            A selection of my recent work spanning web development, 3D graphics,
-            and creative technology.
+            A selection of my recent work focusing on performance, user experience, and modern architecture.
           </p>
         </motion.div>
 
-        {/* Projects grid */}
-        <motion.div
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          layout
-        >
-          <AnimatePresence mode="popLayout">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layoutId={`project-${project.id}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group glass-card cursor-pointer overflow-hidden transition-all duration-200 ease-out"
-                onClick={() => setSelectedProject(project)}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                {/* Image */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-80" />
+        {/* Projects Grid */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group glass-card cursor-pointer overflow-hidden transition-all duration-200 ease-out"
+              onClick={() => openModal(project)}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                transformStyle: "preserve-3d",
+              }}
+            >
+              {/* Card Image */}
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <div className="absolute inset-0 bg-primary/10 mix-blend-overlay transition-opacity duration-300 group-hover:opacity-0" />
+                <img
+                  src={project.images[0]}
+                  alt={project.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+              </div>
 
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="rounded-full border border-primary bg-primary/20 px-6 py-2 font-display text-sm uppercase tracking-wider text-primary backdrop-blur-md">
-                      View Case Study
+              {/* Card Content */}
+              <div className="relative p-6">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="font-display text-xs uppercase tracking-wider text-primary">
+                    {project.category}
+                  </span>
+                  <div className="flex gap-2">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-secondary/10 p-2 text-secondary transition-colors hover:bg-secondary hover:text-white"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary hover:text-white"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+
+                <h3 className="mb-2 font-display text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground font-mono">
+                  <span className="text-primary">Role:</span> {project.role}
+                </div>
+                <p className="mb-4 font-body text-sm text-muted-foreground line-clamp-2">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.slice(0, 3).map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted-foreground"
+                    >
+                      {t}
                     </span>
-                  </div>
+                  ))}
+                  {project.tech.length > 3 && (
+                    <span className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted-foreground">
+                      +{project.tech.length - 3}
+                    </span>
+                  )}
                 </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="mb-2 font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground font-mono">
-                    <span className="text-primary">Role:</span> {project.role}
-                  </div>
-                  <p className="mb-4 font-body text-sm text-muted-foreground line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-muted/50 border border-white/5 px-3 py-1 font-body text-xs text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* Project Modal */}
+      {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm"
+            onClick={() => setSelectedProject(null)}
           >
-            {/* Backdrop */}
             <motion.div
-              className="absolute inset-0 bg-background/90 backdrop-blur-md"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
-            />
-
-            {/* Modal content */}
-            <motion.div
-              className="glass-card relative z-10 max-h-[90vh] w-full max-w-4xl overflow-y-auto border-primary/20"
-              initial={{ scale: 0.9, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 50 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="glass-card relative max-h-[90vh] w-full max-w-4xl overflow-hidden overflow-y-auto rounded-2xl border-primary/20 bg-card"
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-background/50 text-foreground backdrop-blur-sm transition-colors hover:bg-destructive hover:text-destructive-foreground"
+                className="absolute right-4 top-4 z-10 rounded-full bg-background/50 p-2 text-muted-foreground backdrop-blur-md transition-colors hover:bg-destructive hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
 
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Image Column */}
-                <div className="relative h-64 md:h-full min-h-[300px] overflow-hidden">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent md:bg-gradient-to-r" />
+              {/* Image Gallery / Carousel */}
+              <div className="relative h-64 w-full bg-black/50 sm:h-80 md:h-96">
+                <img
+                  src={selectedProject.images[activeImageIndex]}
+                  alt={`${selectedProject.title} screenshot ${activeImageIndex + 1}`}
+                  className="h-full w-full object-contain"
+                />
+
+                {/* Navigation Arrows */}
+                {selectedProject.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-background/50 p-2 text-white hover:bg-primary transition-colors"
+                    >
+                      <ChevronLeft className="h-6 w-6" />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-background/50 p-2 text-white hover:bg-primary transition-colors"
+                    >
+                      <ChevronRight className="h-6 w-6" />
+                    </button>
+                  </>
+                )}
+
+                {/* Thumbnail Strip */}
+                <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+                  {selectedProject.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImageIndex(idx)}
+                      className={`h-2 w-2 rounded-full transition-all ${idx === activeImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"
+                        }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-8">
+                <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="mb-1 font-display text-3xl font-bold text-foreground">
+                      {selectedProject.title}
+                    </h3>
+                    <p className="text-primary">{selectedProject.category}</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-basic flex items-center gap-2 rounded-lg border border-border px-4 py-2 hover:bg-secondary/10 hover:text-secondary hover:border-secondary"
+                    >
+                      <Github className="h-4 w-4" /> Code
+                    </a>
+                    <a
+                      href={selectedProject.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-neon flex items-center gap-2 px-6 py-2 text-sm"
+                    >
+                      <ExternalLink className="h-4 w-4" /> Live Demo
+                    </a>
+                  </div>
                 </div>
 
-                {/* Content Column */}
-                <div className="p-8 md:p-10 flex flex-col h-full">
-                  <h3 className="mb-2 font-display text-3xl font-bold text-foreground">
-                    {selectedProject.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-4 mb-6 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1.5">
-                      <Target className="w-4 h-4 text-primary" />
-                      <span>{selectedProject.role}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Trophy className="w-4 h-4 text-secondary" />
-                      <span>{selectedProject.category}</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6 flex-grow">
+                <div className="grid gap-8 md:grid-cols-3">
+                  <div className="md:col-span-2 space-y-6">
                     <div>
-                      <h4 className="font-display text-lg font-semibold text-foreground mb-2">The Challenge</h4>
-                      <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                      <h4 className="mb-2 font-display text-lg font-semibold text-foreground">
+                        Problem Solved
+                      </h4>
+                      <p className="font-body text-muted-foreground leading-relaxed">
                         {selectedProject.problemSolved}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="font-display text-lg font-semibold text-foreground mb-2">Key Features</h4>
-                      <p className="font-body text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
-                        {selectedProject.longDescription}
-                      </p>
-                    </div>
-
-                    {/* Tags */}
-                    <div>
-                      <h4 className="font-display text-lg font-semibold text-foreground mb-2">Tech Stack</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProject.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 font-body text-xs text-primary"
-                          >
-                            {tag}
-                          </span>
+                      <h4 className="mb-2 font-display text-lg font-semibold text-foreground">
+                        Key Features
+                      </h4>
+                      <ul className="list-disc list-inside space-y-1 text-muted-foreground font-body">
+                        {selectedProject.features.map((feature, i) => (
+                          <li key={i}>{feature}</li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4 mt-8 pt-6 border-t border-border">
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-neon flex-1 flex items-center justify-center gap-2 py-3 text-sm"
-                    >
-                      <Github className="h-4 w-4" />
-                      Source Code
-                    </a>
-                    {selectedProject.live.startsWith("/") ? (
-                      <Link
-                        to={selectedProject.live}
-                        className="btn-gradient flex-1 flex items-center justify-center gap-2 py-3 text-sm"
-                        onClick={() => setSelectedProject(null)}
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        Live Demo
-                      </Link>
-                    ) : (
-                      <a
-                        href={selectedProject.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-gradient flex-1 flex items-center justify-center gap-2 py-3 text-sm"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        Live Demo
-                      </a>
-                    )}
+                  <div className="glass-card p-5 h-fit">
+                    <h4 className="mb-4 font-display text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                      Tech Stack
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-md bg-secondary/10 px-3 py-1.5 font-mono text-xs text-secondary-foreground"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-border">
+                      <h4 className="mb-2 font-display text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                        My Role
+                      </h4>
+                      <p className="text-sm text-foreground">{selectedProject.role}</p>
+                    </div>
                   </div>
                 </div>
               </div>
