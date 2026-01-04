@@ -56,7 +56,7 @@ const ThreeDPhoto = ({ src, alt }: ThreeDPhotoProps) => {
             ease: "easeInOut",
           },
         }}
-        className="relative z-10 w-full max-w-sm sm:max-w-md"
+        className="relative z-10 w-full"
       >
         <div
           className="relative overflow-hidden"

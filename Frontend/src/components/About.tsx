@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Palette, Rocket, Sparkles } from "lucide-react";
+import ThreeDPhoto from "./ThreeDPhoto";
 
 const highlights = [
   {
@@ -70,7 +71,7 @@ const About = () => {
                   My Journey
                 </h3>
                 <motion.div
-                  className="relative h-16 w-16 overflow-hidden rounded-xl border border-primary/20 bg-primary/5"
+                  className="relative h-24 w-24 sm:h-32 sm:w-32 overflow-hidden rounded-xl border border-primary/20 bg-primary/5"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
                   <img
