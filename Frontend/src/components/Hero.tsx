@@ -24,9 +24,9 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container relative z-10 mx-auto px-4">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="flex flex-col items-center justify-center text-center">
           {/* Text Content */}
-          <div className="text-center lg:text-left">
+          <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, x: -300 }}
               animate={{ opacity: 1, x: 0 }}
@@ -141,15 +141,6 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* 3D Image - Right Column */}
-          <motion.div
-            className="flex items-center justify-center lg:justify-end"
-            initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <ThreeDPhoto src="/profile/hero-image.png" alt="Alfaz Ali" />
-          </motion.div>
         </div>
 
         {/* Scroll indicator */}

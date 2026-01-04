@@ -65,9 +65,21 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="glass-card p-8 md:p-10">
-              <h3 className="mb-6 font-display text-2xl font-semibold text-foreground">
-                My Journey
-              </h3>
+              <div className="mb-6 flex items-center justify-between">
+                <h3 className="font-display text-2xl font-semibold text-foreground">
+                  My Journey
+                </h3>
+                <motion.div
+                  className="relative h-16 w-16 overflow-hidden rounded-xl border border-primary/20 bg-primary/5"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
+                  <img
+                    src="/profile/my-journey.png"
+                    alt="Alfaz Ali"
+                    className="h-full w-full object-cover"
+                  />
+                </motion.div>
+              </div>
               <div className="space-y-4 font-body text-muted-foreground">
                 <p>
                   Hello! I'm Alfaz, a MERN Stack Developer based in Kolkata, India. I specialize in
@@ -150,7 +162,7 @@ const About = () => {
               { year: "2022", title: "Started Coding", description: "Wrote my first line of C++ code and fell in love with problem solving." },
               { year: "2023-24", title: "Learned MERN Stack", description: "Deep dived into web development with React, Next.js, Node.js, and MongoDB." },
               { year: "2025", title: "Built Major Projects", description: "Created full-stack applications like E-commerce and Social Media platforms." },
-              { year: "2025", title: "Advancing Skills", description: "Exploring Cloud Computing, DevOps, and Scalable Architecture."}
+              { year: "2025", title: "Advancing Skills", description: "Exploring Cloud Computing, DevOps, and Scalable Architecture." }
             ].map((item, index) => (
               <motion.div
                 key={item.year}
