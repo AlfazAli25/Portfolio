@@ -64,6 +64,30 @@ const projects: Project[] = [
     github: "https://github.com/AlfazAli25/Basic_Social_Media_WebApplication",
     demo: "/backend-project",
   },
+  {
+    id: 3,
+    title: "YourNotes",
+    category: "Web Based Notepad",
+    description: "YourNotes is a web-based notepad application that allows users to create, edit, and manage notes in a simple and distraction-free interface. The application focuses on fast access, smooth usability, and reliable data handling, making it suitable for organizing daily ideas, tasks, and quick notes.",
+    role: "Lead Full Stack Developer",
+    problemSolved: "Most simple note-taking solutions either lack proper user authentication or compromise usability with complex interfaces. YourNotes addresses this by providing a balanced solution where users can securely sign in to access their own notes, ensuring privacy, data persistence, and a focused note-taking experience without unnecessary complexity.",
+    tech: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS", "Three.js", "Framer Motion", "React Three Fiber"],
+    features: [
+      "User authentication with secure sign-in functionality",
+      "Create, edit, and delete personal notes",
+      "Notes are user-specific and securely stored",
+      "Clean, minimal, and distraction-free UI",  
+      "Responsive design for desktop and mobile usage",
+      "Reliable data persistence to prevent data loss"
+    ],
+    images: [
+      "/projects/social-media/note1.png",
+      "/projects/social-media/note2.png",
+      "/projects/social-media/note3.png"
+    ],
+    github: "https://github.com/AlfazAli25/YourNotes",
+    demo: "https://yournotes-d47a.onrender.com/",
+  }
 ];
 
 const Projects = () => {
