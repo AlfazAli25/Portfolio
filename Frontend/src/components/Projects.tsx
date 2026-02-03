@@ -81,9 +81,9 @@ const projects: Project[] = [
       "Reliable data persistence to prevent data loss"
     ],
     images: [
-      "/projects/social-media/note1.png",
-      "/projects/social-media/note2.png",
-      "/projects/social-media/note3.png"
+      "/projects/notepad/note1.png",
+      "/projects/notepad/note2.png",
+      "/projects/notepad/note3.png"
     ],
     github: "https://github.com/AlfazAli25/YourNotes",
     demo: "https://yournotes-d47a.onrender.com/",
